@@ -1,0 +1,231 @@
+{
+  "bundle_version": "2026-08-19T00:00:00Z",
+  "providers": [
+    {
+      "provider_id": "GOPAY_MERCHANT",
+      "provider_name": "GoPay Merchant",
+      "app_identifier": "com.gojek.gopaymerchant",
+      "version": 2,
+      "min_app_version": "0.1.0",
+      "detection_rules": {
+        "match_type": "contains_all",
+        "title_patterns": ["Pembayaran Diterima", "Pembayaran Berhasil", "Transaksi Berhasil"],
+        "text_patterns": ["telah diterima", "berhasil diterima", "Pembayaran sebesar"],
+        "regex_patterns": [
+          "(?i)pembayaran\\s+sebesar\\s+rp\\s?[\\d.,]+\\s+telah\\s+diterima",
+          "(?i)rp\\s?[\\d.,]+\\s+(?:telah\\s+)?diterima\\s+dari"
+        ],
+        "case_sensitive": false,
+        "min_confidence_score": 0.85
+      },
+      "amount_rules": {
+        "extraction_regex": "(?i)(?:rp|idr)\\s?([\\d.,]+)",
+        "thousands_separator": ".",
+        "decimal_separator": ",",
+        "currency_prefix": ["Rp", "RP", "rp", "IDR"],
+        "min_amount": 1,
+        "max_amount": 50000000
+      },
+      "success_rules": {
+        "success_keywords": ["diterima", "berhasil", "sukses"],
+        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["diproses", "menunggu", "pending"],
+        "refund_keywords": ["dikembalikan", "refund"]
+      },
+      "exclusion_rules": {
+        "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
+        "exclude_notification_categories": ["promo", "marketing", "reminder"]
+      },
+      "is_active_remote": true,
+      "updated_at": "2026-08-19T00:00:00Z"
+    },
+    {
+      "provider_id": "DANA",
+      "provider_name": "DANA",
+      "app_identifier": "id.dana",
+      "version": 1,
+      "min_app_version": "0.1.0",
+      "detection_rules": {
+        "match_type": "contains_all",
+        "title_patterns": ["DANA", "Uang Masuk", "Pembayaran Diterima"],
+        "text_patterns": ["menerima uang", "Kamu menerima", "diterima dari"],
+        "regex_patterns": [
+          "(?i)menerima\\s+uang\\s+sebesar\\s+rp\\s?[\\d.,]+",
+          "(?i)rp\\s?[\\d.,]+\\s+(?:telah\\s+)?diterima"
+        ],
+        "case_sensitive": false,
+        "min_confidence_score": 0.85
+      },
+      "amount_rules": {
+        "extraction_regex": "(?i)(?:rp|idr)\\s?([\\d.,]+)",
+        "thousands_separator": ".",
+        "decimal_separator": ",",
+        "currency_prefix": ["Rp", "RP", "rp", "IDR"],
+        "min_amount": 1,
+        "max_amount": 50000000
+      },
+      "success_rules": {
+        "success_keywords": ["diterima", "berhasil", "sukses"],
+        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["diproses", "menunggu", "pending"],
+        "refund_keywords": ["dikembalikan", "refund"]
+      },
+      "exclusion_rules": {
+        "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
+        "exclude_notification_categories": ["promo", "marketing", "reminder"]
+      },
+      "is_active_remote": true,
+      "updated_at": "2026-08-19T00:00:00Z"
+    },
+    {
+      "provider_id": "SHOPEEPAY",
+      "provider_name": "ShopeePay",
+      "app_identifier": "com.shopeepay.id",
+      "version": 2,
+      "min_app_version": "0.1.0",
+      "detection_rules": {
+        "match_type": "contains_all",
+        "title_patterns": ["ShopeePay", "Pembayaran Diterima", "Shopee"],
+        "text_patterns": ["Pembayaran berhasil", "dana diterima", "Pembayaran sebesar"],
+        "regex_patterns": [
+          "(?i)pembayaran\\s+(?:sebesar\\s+)?rp\\s?[\\d.,]+\\s+(?:berhasil|diterima)"
+        ],
+        "case_sensitive": false,
+        "min_confidence_score": 0.85
+      },
+      "amount_rules": {
+        "extraction_regex": "(?i)(?:rp|idr)\\s?([\\d.,]+)",
+        "thousands_separator": ".",
+        "decimal_separator": ",",
+        "currency_prefix": ["Rp", "RP", "rp", "IDR"],
+        "min_amount": 1,
+        "max_amount": 50000000
+      },
+      "success_rules": {
+        "success_keywords": ["diterima", "berhasil", "sukses"],
+        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["diproses", "menunggu", "pending"],
+        "refund_keywords": ["dikembalikan", "refund"]
+      },
+      "exclusion_rules": {
+        "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
+        "exclude_notification_categories": ["promo", "marketing", "reminder"]
+      },
+      "is_active_remote": true,
+      "updated_at": "2026-08-19T00:00:00Z"
+    },
+    {
+      "provider_id": "OVO",
+      "provider_name": "OVO",
+      "app_identifier": "ovo.id",
+      "version": 2,
+      "min_app_version": "0.1.0",
+      "detection_rules": {
+        "match_type": "contains_all",
+        "title_patterns": ["OVO", "Pembayaran Berhasil", "Uang Masuk"],
+        "text_patterns": ["menerima", "berhasil dibayar", "OVO Cash"],
+        "regex_patterns": [
+          "(?i)(?:kamu\\s+)?menerima\\s+rp\\s?[\\d.,]+",
+          "(?i)rp\\s?[\\d.,]+\\s+(?:berhasil\\s+dibayar|masuk)"
+        ],
+        "case_sensitive": false,
+        "min_confidence_score": 0.85
+      },
+      "amount_rules": {
+        "extraction_regex": "(?i)(?:rp|idr)\\s?([\\d.,]+)",
+        "thousands_separator": ".",
+        "decimal_separator": ",",
+        "currency_prefix": ["Rp", "RP", "rp", "IDR"],
+        "min_amount": 1,
+        "max_amount": 50000000
+      },
+      "success_rules": {
+        "success_keywords": ["diterima", "berhasil", "sukses"],
+        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["diproses", "menunggu", "pending"],
+        "refund_keywords": ["dikembalikan", "refund"]
+      },
+      "exclusion_rules": {
+        "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
+        "exclude_notification_categories": ["promo", "marketing", "reminder"]
+      },
+      "is_active_remote": true,
+      "updated_at": "2026-08-19T00:00:00Z"
+    },
+    {
+      "provider_id": "BCA",
+      "provider_name": "BCA",
+      "app_identifier": "com.bca",
+      "version": 1,
+      "min_app_version": "0.1.0",
+      "detection_rules": {
+        "match_type": "contains_all",
+        "title_patterns": ["BCA", "Notifikasi Transaksi", "Transaksi Masuk"],
+        "text_patterns": ["Transfer masuk", "Anda menerima dana", "dana masuk"],
+        "regex_patterns": [
+          "(?i)(?:transfer|dana)\\s+masuk.{0,40}?(?:rp|idr)\\s?[\\d.,]+",
+          "(?i)(?:rp|idr)\\s?[\\d.,]+.{0,30}?transfer"
+        ],
+        "case_sensitive": false,
+        "min_confidence_score": 0.85
+      },
+      "amount_rules": {
+        "extraction_regex": "(?i)(?:rp|idr)\\s?([\\d.,]+)",
+        "thousands_separator": ".",
+        "decimal_separator": ",",
+        "currency_prefix": ["Rp", "RP", "rp", "IDR"],
+        "min_amount": 1,
+        "max_amount": 50000000
+      },
+      "success_rules": {
+        "success_keywords": ["diterima", "berhasil", "sukses"],
+        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["diproses", "menunggu", "pending"],
+        "refund_keywords": ["dikembalikan", "refund"]
+      },
+      "exclusion_rules": {
+        "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
+        "exclude_notification_categories": ["promo", "marketing", "reminder"]
+      },
+      "is_active_remote": true,
+      "updated_at": "2026-08-19T00:00:00Z"
+    },
+    {
+      "provider_id": "MANDIRI",
+      "provider_name": "Mandiri",
+      "app_identifier": "com.bankmandiri.mandirionline",
+      "version": 1,
+      "min_app_version": "0.1.0",
+      "detection_rules": {
+        "match_type": "contains_all",
+        "title_patterns": ["Livin", "Mandiri", "Notifikasi Transaksi"],
+        "text_patterns": ["menerima dana", "dana masuk", "Anda menerima"],
+        "regex_patterns": [
+          "(?i)(?:menerima|terima)\\s+dana.{0,40}?(?:rp|idr)\\s?[\\d.,]+"
+        ],
+        "case_sensitive": false,
+        "min_confidence_score": 0.85
+      },
+      "amount_rules": {
+        "extraction_regex": "(?i)(?:rp|idr)\\s?([\\d.,]+)",
+        "thousands_separator": ".",
+        "decimal_separator": ",",
+        "currency_prefix": ["Rp", "RP", "rp", "IDR"],
+        "min_amount": 1,
+        "max_amount": 50000000
+      },
+      "success_rules": {
+        "success_keywords": ["diterima", "berhasil", "sukses"],
+        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["diproses", "menunggu", "pending"],
+        "refund_keywords": ["dikembalikan", "refund"]
+      },
+      "exclusion_rules": {
+        "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
+        "exclude_notification_categories": ["promo", "marketing", "reminder"]
+      },
+      "is_active_remote": true,
+      "updated_at": "2026-08-19T00:00:00Z"
+    }
+  ]
+}
