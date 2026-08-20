@@ -9,11 +9,10 @@
       "min_app_version": "0.1.0",
       "detection_rules": {
         "match_type": "contains_all",
-        "title_patterns": ["Pembayaran Diterima", "Pembayaran Berhasil", "Transaksi Berhasil"],
-        "text_patterns": ["telah diterima", "berhasil diterima", "Pembayaran sebesar"],
+        "title_patterns": ["Pembayaran QRIS statis diterima", "Pembayaran QRIS statis"],
+        "text_patterns": ["Rp "],
         "regex_patterns": [
-          "(?i)pembayaran\\s+sebesar\\s+rp\\s?[\\d.,]+\\s+telah\\s+diterima",
-          "(?i)rp\\s?[\\d.,]+\\s+(?:telah\\s+)?diterima\\s+dari"
+          "(?i)Pembayaran\\s+QRIS\\s+statis\\s+diterima\\s*\n\\s*(?:Rp|IDR)\\s*[\\d.,]+\\s+di\\s+.+"
         ],
         "case_sensitive": false,
         "min_confidence_score": 0.85
@@ -228,17 +227,17 @@
       "updated_at": "2026-08-19T00:00:00Z"
     },
     {
-      "provider_id": "PROVIDER KU",
-      "provider_name": "PROVIDER NAME",
-      "app_identifier": "com.notivoice",
-      "version": 1,
+      "provider_id": "WAB",
+      "provider_name": "WhatsApp Business",
+      "app_identifier": "com.whatsapp.w4b",
+      "version": 2,
       "min_app_version": "0.1.0",
       "detection_rules": {
         "match_type": "contains_all",
-        "title_patterns": ["Livin", "Mandiri", "Notifikasi Transaksi"],
-        "text_patterns": ["menerima dana", "dana masuk", "Anda menerima"],
+        "title_patterns": ["Pembayaran"],
+        "text_patterns": ["Payment Success", "Pembayaran Berhasil"],
         "regex_patterns": [
-          "(?i)(?:menerima|terima)\\s+dana.{0,40}?(?:rp|idr)\\s?[\\d.,]+"
+          "(?i)(?:Payment Success|Pembayaran Berhasil)\\s+(?:rp|idr)\\s?[\\d.,]+"
         ],
         "case_sensitive": false,
         "min_confidence_score": 0.85
