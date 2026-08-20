@@ -230,14 +230,14 @@
       "provider_id": "WAB",
       "provider_name": "WhatsApp Business",
       "app_identifier": "com.whatsapp.w4b",
-      "version": 2,
+      "version": 3,
       "min_app_version": "0.1.0",
       "detection_rules": {
         "match_type": "contains_all",
         "title_patterns": ["Pembayaran"],
-        "text_patterns": ["Payment Success", "Pembayaran Berhasil"],
+        "text_patterns": ["Payment Success", "Payment Successful", "Pembayaran Berhasil", "Pembayaran Sukses"],
         "regex_patterns": [
-          "(?i)(?:Payment Success|Pembayaran Berhasil)\\s+(?:rp|idr)\\s?[\\d.,]+"
+          "(?i)(?:Payment (?:Success|Successful)|Pembayaran (?:Berhasil|Sukses))\\s+(?:rp|idr)\\s?[\\d.,]+"
         ],
         "case_sensitive": false,
         "min_confidence_score": 0.85
@@ -251,10 +251,10 @@
         "max_amount": 50000000
       },
       "success_rules": {
-        "success_keywords": ["diterima", "berhasil", "sukses"],
-        "failed_keywords": ["gagal", "ditolak", "dibatalkan"],
-        "pending_keywords": ["diproses", "menunggu", "pending"],
-        "refund_keywords": ["dikembalikan", "refund"]
+        "success_keywords": ["success", "successful", "berhasil", "sukses", "diterima", "completed", "approved", "confirmed", "paid"],
+        "failed_keywords": ["failed", "declined", "rejected", "cancelled", "gagal", "ditolak", "dibatalkan"],
+        "pending_keywords": ["processing", "pending", "in progress", "diproses", "menunggu"],
+        "refund_keywords": ["refund", "reversal", "dikembalikan"]
       },
       "exclusion_rules": {
         "exclude_if_contains": ["promo", "cashback", "diskon", "kupon", "top up", "saldo anda saat ini", "voucher", "undian", "poin"],
