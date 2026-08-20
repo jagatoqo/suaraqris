@@ -1,4 +1,3 @@
-# latest.json → jadi
-{"preset_url": "https://cdn.jsdelivr.net/gh/jagatoqo/suara-qris@v1.0.1/presets.json"}
-# latest-beta.json → jadi
-{"preset_url": "https://cdn.jsdelivr.net/gh/jagatoqo/suara-qris@v1.0.1/presets-beta.json"}
+{
+  "preset_url": "https://cdn.jsdelivr.net/gh/jagatoqo/suara-qris@v1.0.1/presets.json"
+}
